@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import ExternalLinkIcon from "@/components/ExternalLinkIcon";
+import { band } from "@/lib/band";
+import { staticExport } from "@/lib/site";
+
+const facebook = band.socials.find((s) => s.platform === "facebook");
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -18,9 +23,24 @@ export default function ContactPage() {
       </h1>
       <p className="mb-10 text-lg text-foreground/70 leading-relaxed">
         Pour un booking ou toute autre question, écrivez-nous. Plus on a de
-        détails sur l&apos;événement, plus vite on peut vous répondre.
+        détails sur l&apos;événement (date, lieu, durée), plus vite on peut
+        vous répondre.
       </p>
 
+      {staticExport ? (
+        facebook && (
+          <a
+            href={facebook.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Nous écrire sur Facebook, ouvre un nouvel onglet"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-3 font-semibold text-white transition-opacity hover:opacity-90"
+          >
+            Nous écrire sur Facebook
+            <ExternalLinkIcon className="h-4 w-4" />
+          </a>
+        )
+      ) : (
       <form name="contact" method="POST" action="/__forms.html" className="space-y-6">
         <input type="hidden" name="form-name" value="contact" />
         <p className="hidden">
@@ -80,6 +100,7 @@ export default function ContactPage() {
           Envoyer
         </button>
       </form>
+      )}
     </div>
   );
 }

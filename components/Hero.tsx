@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ExternalLinkIcon from "@/components/ExternalLinkIcon";
 import { band } from "@/lib/band";
+import { asset } from "@/lib/site";
 
 export default function Hero() {
   return (
@@ -17,7 +18,7 @@ export default function Hero() {
           className="relative mx-auto aspect-square w-full max-w-[16rem] sm:max-w-md md:order-2 md:max-w-none"
         >
           <Image
-            src="/logo.webp"
+            src={asset("/logo.webp")}
             alt={band.name}
             fill
             priority

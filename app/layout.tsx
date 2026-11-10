@@ -3,8 +3,10 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { band } from "@/lib/band";
+import { siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
+  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
   title: {
     default: band.name,
     template: `%s · ${band.name}`,
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: band.name,
     description: band.description,
-    images: ["/og.jpg"],
+    images: [siteUrl ? `${siteUrl}/og.jpg` : "/og.jpg"],
     locale: "fr_CA",
     type: "website",
   },

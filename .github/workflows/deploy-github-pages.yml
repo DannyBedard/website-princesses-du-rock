@@ -1,0 +1,64 @@
+name: github pages deployment
+run-name: "[github-pages] - deploying ${{ github.ref_name }}"
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore: '.github/**'
+  schedule:
+    - cron: 17 10 * * *
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          cache: npm
+          node-version: 22
+
+      - name: Configure Pages
+        id: configure-pages
+        uses: actions/configure-pages@v6
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+        env:
+          GOOGLE_CAL_ICS_URL: ${{ secrets.GOOGLE_CAL_ICS_URL }}
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.configure-pages.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.configure-pages.outputs.base_url }}
+          NEXT_PUBLIC_STATIC_EXPORT: true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: out
+
+  deploy:
+    concurrency: deployment-github-pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy-pages.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      pages: write
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deploy-pages
+        uses: actions/deploy-pages@v5
