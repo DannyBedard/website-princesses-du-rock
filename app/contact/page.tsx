@@ -27,20 +27,28 @@ export default function ContactPage() {
         vous répondre.
       </p>
 
-      {staticExport ? (
-        facebook && (
+      <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+        <a
+          href={`mailto:${band.email}`}
+          className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-3 font-semibold text-white transition-opacity hover:opacity-90"
+        >
+          {band.email}
+        </a>
+        {facebook && (
           <a
             href={facebook.url}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Nous écrire sur Facebook, ouvre un nouvel onglet"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-3 font-semibold text-white transition-opacity hover:opacity-90"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-foreground/60 px-8 py-3 font-semibold text-foreground transition-colors hover:bg-foreground hover:text-background"
           >
-            Nous écrire sur Facebook
+            Facebook
             <ExternalLinkIcon className="h-4 w-4" />
           </a>
-        )
-      ) : (
+        )}
+      </div>
+
+      {!staticExport && (
       <form name="contact" method="POST" action="/__forms.html" className="space-y-6">
         <input type="hidden" name="form-name" value="contact" />
         <p className="hidden">

@@ -5,6 +5,7 @@ export const band = {
   description:
     "Les Princesses du Rock, un band qui livre des covers à leur sauce. Ça danse, ça funk, ça chante le rock, en anglais ou en français. C'est bon!",
   youtubeId: "461G_PTVbDc",
+  email: "info@agenceeureka.ca",
   musicUrl: "https://laverdiere.bandcamp.com/album/laverdi-re-ep",
   members: [
     {

@@ -12,6 +12,12 @@ export default function Footer() {
             © {currentYear} {band.name}. Tous droits réservés.
           </div>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+            <a
+              href={`mailto:${band.email}`}
+              className="text-sm text-foreground/60 transition-colors hover:text-accent2"
+            >
+              {band.email}
+            </a>
             {band.socials.map((s) => (
               <a
                 key={s.url}
