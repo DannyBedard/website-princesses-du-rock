@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { fetchShows, type Show } from "@/lib/shows";
+import JsonLd from "@/components/JsonLd";
 import ShowRow from "@/components/ShowRow";
+import { showJsonLd } from "@/lib/structuredData";
 
 export const metadata: Metadata = {
   title: "Spectacles",
@@ -24,6 +26,7 @@ export default async function ShowsPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      {shows.length > 0 && <JsonLd data={shows.map(showJsonLd)} />}
       <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-accent2">
         Spectacles
       </p>

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
+import JsonLd from "@/components/JsonLd";
+import { bandJsonLd } from "@/lib/structuredData";
 import ShowRow from "@/components/ShowRow";
 import VideoCard from "@/components/VideoCard";
 import { band } from "@/lib/band";
@@ -12,6 +14,7 @@ export default async function Home() {
 
   return (
     <>
+      <JsonLd data={bandJsonLd()} />
       <Hero />
 
       {shows.length > 0 && (
