@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Forms</title>
+</head>
+<body>
+  <!-- Netlify form detection only. Every <input>/<select>/<textarea> name declared here
+       is what Netlify accepts as a valid field on POST. Keep this in sync with the
+       real form in app/contact/page.tsx. -->
+  <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="contact" />
+    <input name="bot-field" />
+    <input name="name" type="text" />
+    <input name="email" type="email" />
+    <input name="event-date" type="date" />
+    <input name="event-place" type="text" />
+    <textarea name="message"></textarea>
+  </form>
+</body>
+</html>

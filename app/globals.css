@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --surface: #151515;
+  --foreground: #F2F2F2;
+  --muted: #7A7A7A;
+  --accent: #D9232B;
+  --accent2: #E9B44C;
+  --accent3: #1F58B0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent2: var(--accent2);
+  --color-accent3: var(--accent3);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:where(a, button, input, textarea):focus-visible {
+  outline: 2px solid var(--accent2);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+input[type="date"] {
+  color-scheme: dark;
+}
